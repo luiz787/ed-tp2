@@ -5,11 +5,11 @@ SortingData::SortingData() {
     swaps = 0;
 }
 
-int SortingData::getComparisons() {
+uint64_t SortingData::getComparisons() {
     return comparisions;
 }
 
-int SortingData::getSwaps() {
+uint64_t SortingData::getSwaps() {
     return swaps;
 }
 
