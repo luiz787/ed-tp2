@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.14)
+project(ed_tp2)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(ed_tp2 main.cpp QuickSortFactory.hpp QuickSort.hpp ClassicQuickSort.cpp ClassicQuickSort.hpp VectorType.hpp VectorType.cpp QuickSortFactory.cpp ThreeMedianPivotQuickSort.cpp ThreeMedianPivotQuickSort.hpp FirstElementPivotQuickSort.cpp FirstElementPivotQuickSort.hpp OnePercentInsertionQuickSort.cpp OnePercentInsertionQuickSort.hpp FivePercentInsertionQuickSort.cpp FivePercentInsertionQuickSort.hpp TenPercentInsertionQuickSort.cpp TenPercentInsertionQuickSort.hpp NonRecursiveQuickSort.cpp NonRecursiveQuickSort.hpp SortingData.cpp SortingData.hpp)
