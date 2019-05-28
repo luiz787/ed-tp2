@@ -9,7 +9,7 @@ private:
 public:
     SortingData sort(int* arr, int size) {
         auto sd = SortingData();
-        quickSort(arr, 0, size, &sd);
+        quickSort(arr, 0, size - 1, &sd);
         return sd;
     }
 

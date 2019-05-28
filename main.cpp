@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     std::cout << argv[1] << " " << argv[2] << " " << argv[3] << " " << sortingData.getComparisons() << " " << sortingData.getSwaps() << std::endl;
     std::cout << "Tempo de execucao: " << elapsed_time.count() << std::endl;
     delete quickSort;
-    delete [] vector;
+    delete [] vector; 
     return 0;
 }
 
