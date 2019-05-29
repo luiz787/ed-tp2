@@ -1,6 +1,6 @@
 #include "QuickSortFactory.hpp"
 #include "ClassicQuickSort.hpp"
-#include "ThreeMedianPivotQuickSort.hpp"
+#include "MedianThreePivotQuickSort.hpp"
 #include "FirstElementPivotQuickSort.hpp"
 #include "OnePercentInsertionQuickSort.hpp"
 #include "FivePercentInsertionQuickSort.hpp"
@@ -13,21 +13,19 @@ QuickSort* QuickSortFactory::getQuickSort(std::string type) {
         return new ClassicQuickSort();
     }
     if (type == "QM3") {
-        return new ThreeMedianPivotQuickSort();
+        return new MedianThreePivotQuickSort();
     }
     if (type == "QPE") {
         return new FirstElementPivotQuickSort();
     }
-    if (type == "QP1") {
+    if (type == "QI1") {
         return new OnePercentInsertionQuickSort();
     }
-    if (type == "QP5") {
+    if (type == "QI5") {
         return new FivePercentInsertionQuickSort();
     }
-    if (type == "QP10") {
+    if (type == "QI10") {
         return new TenPercentInsertionQuickSort();
     }
-    if (type == "QNR") {
-        return new NonRecursiveQuickSort();
-    }
+    return new NonRecursiveQuickSort();
 }
