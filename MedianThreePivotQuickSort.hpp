@@ -1,7 +1,6 @@
 #ifndef ED_TP2_MEDIANTHREEPIVOTQUICKSORT_HPP
 #define ED_TP2_MEDIANTHREEPIVOTQUICKSORT_HPP
 
-
 #include "QuickSort.hpp"
 
 class MedianThreePivotQuickSort : public QuickSort {
