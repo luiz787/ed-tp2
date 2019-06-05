@@ -2,8 +2,9 @@
 #define ED_TP2_NONRECURSIVEQUICKSORT_HPP
 
 #include "QuickSort.hpp"
+#include "ClassicQuickSort.hpp"
 
-class NonRecursiveQuickSort : public QuickSort {
+class NonRecursiveQuickSort : public ClassicQuickSort {
 public:
     void quickSort(int* arr, int start, int end, SortingData* sd) override;
     ~NonRecursiveQuickSort() override;
