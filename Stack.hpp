@@ -11,6 +11,7 @@ private:
     Node<T>* head;
 public:
     Stack();
+    ~Stack();
     void push(T item);
     T pop();
     bool isEmpty();

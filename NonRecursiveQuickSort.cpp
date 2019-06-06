@@ -3,25 +3,29 @@
 
 void NonRecursiveQuickSort::quickSort(int* arr, int start, int end, SortingData* sd) {
     Stack<int> stack = Stack<int>();
-    stack.push(start);
+
     stack.push(end);
+    stack.push(start);
 
     while (!stack.isEmpty()) {
-        int i = start;
-        int j = end;
-        int pivot = arr[(start + end) / 2];
-        this->partition(arr, pivot, &i, &j, sd);
+        int currentLeft = stack.pop();
+        int currentRight = stack.pop();
 
-        if (true) { // TODO: push condition
-            stack.push(start);
-            stack.push(i);
+        int left = currentLeft;
+        int right = currentRight;
+
+        int pivot = arr[(left + right) / 2];
+        this->partition(arr, pivot, &left, &right, sd);
+
+        if (currentLeft < right) {
+            stack.push(right);
+            stack.push(currentLeft);
         }
-        if (true) { // TODO: push condition
-            stack.push(j);
-            stack.push(end);
+        if (left < currentRight) {
+            stack.push(currentRight);
+            stack.push(left);
         }
     }
-
 }
 
 NonRecursiveQuickSort::~NonRecursiveQuickSort() = default;

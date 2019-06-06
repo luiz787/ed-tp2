@@ -20,3 +20,5 @@ template<class T>
 T Node<T>::getData() const {
     return this->data;
 }
+
+template class Node<int>;
