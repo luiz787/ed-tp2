@@ -3,7 +3,6 @@
 
 void NonRecursiveQuickSort::quickSort(int* arr, int start, int end, SortingData* sd) {
     Stack<int> stack = Stack<int>();
-
     stack.push(end);
     stack.push(start);
 
