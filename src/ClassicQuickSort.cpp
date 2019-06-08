@@ -18,10 +18,12 @@ void ClassicQuickSort::quickSort(int* arr, int start, int end, SortingData* sd) 
 
 void ClassicQuickSort::partition(int *arr, int pivot, int* i, int* j, SortingData* sd) {
     while (*i <= *j) {
+        sd->incrementComparisons();
         while (arr[*i] < pivot) {
             sd->incrementComparisons();
             (*i)++;
         }
+        sd->incrementComparisons();
         while (arr[*j] > pivot) {
             sd->incrementComparisons();
             (*j)--;

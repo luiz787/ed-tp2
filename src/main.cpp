@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     auto sortingData = quickSort->sort(vector, vectorSize);
     auto t2 = std::chrono::high_resolution_clock::now();
     auto elapsed_time = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-    // std::cout << "Sorted?" << debug_checkSorted(vector, vectorSize) << std::endl;
+    //std::cout << "Sorted?" << debug_checkSorted(vector, vectorSize) << std::endl;
     std::cout << argv[1] << " " << argv[2] << " " << argv[3] << " " << sortingData.getComparisons() << " " << sortingData.getSwaps() << std::endl;
     std::cout << "Tempo de execucao: " << elapsed_time.count() << std::endl;
     delete quickSort;

@@ -13,37 +13,36 @@ int FirstElementPivotQuickSort::partition(int *arr, int start, int end, SortingD
     int pivot = arr[start];
     int i = start + 1;
     int j = end;
-    while (true) {
-        while (i <= j) {
+    while (i <= j) {
+        sd->incrementComparisons();
+        while (arr[i] < pivot) {
             sd->incrementComparisons();
-            if (arr[i] < pivot) {
-                i++;
-            } else {
-                break;
-            }
+            i++;
         }
-        while (j > i) {
+        sd->incrementComparisons();
+        while (arr[j] > pivot) {
             sd->incrementComparisons();
-            if (arr[j] > pivot) {
-                j--;
-            } else {
-                break;
-            }
+            j--;
         }
-        if (i >= j) {
-            break;
+        if (i <= j) {
+            sd->incrementSwaps();
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+            i++;
+            j--;
         }
-        sd->incrementSwaps();
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-        i++;
-        j--;
     }
-    sd->incrementSwaps();
-    arr[start] = arr[i - 1];
-    arr[i - 1] = pivot;
-    return i - 1;
+
+    int pivotPosition = i - 1;
+
+    if (pivotPosition != start) {
+        sd->incrementSwaps();
+        arr[start] = arr[pivotPosition];
+        arr[pivotPosition] = pivot;
+    }
+
+    return pivotPosition;
 }
 
 FirstElementPivotQuickSort::~FirstElementPivotQuickSort() = default;
