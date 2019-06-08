@@ -66,9 +66,8 @@ int* generateVector(int size, VectorType::Type type) {
         }
     }
     if (type == VectorType::RANDOM) {
-        std::random_device rd;
-        std::mt19937 rng(rd());
-        std::uniform_int_distribution<int> uni(0, 500000); // guaranteed unbiased
+        std::mt19937 rng(time(nullptr));
+        std::uniform_int_distribution<int> uni(0, size); // guaranteed unbiased
         for (int i = 0; i < size; i++) {
             auto random_integer = uni(rng);
             vector[i] = random_integer;
