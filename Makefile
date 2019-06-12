@@ -1,7 +1,8 @@
-EXE = tp2
-
 SRC_DIR = src
 OBJ_DIR = obj
+BIN_DIR = bin
+
+EXE = $(BIN_DIR)/tp2
 
 CC = g++
 
