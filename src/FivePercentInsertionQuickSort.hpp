@@ -4,13 +4,18 @@
 #include "QuickSort.hpp"
 #include "MedianThreePivotQuickSort.hpp"
 /*
- * QuickSort inserção 5%. Herda de QuickSort mediana de três.
+ * QuickSort híbrido com inserção 5%. Herda de QuickSort mediana de três.
  */
 class FivePercentInsertionQuickSort : public MedianThreePivotQuickSort {
 public:
     /*
      * API do quickSort inserção 5%. Sobrescreve o método padrão, para determinar o tamanho máximo para o qual
-     * o algoritmo de inserção passará a ser utilizado.
+     * o algoritmo de inserção passará a ser utilizado (5% do tamanho do vetor original).
+     *
+     * @param arr - vetor a ser ordenado.
+     * @param size - tamanho do vetor.
+     *
+     * @returns dados sobre a execução do algoritmo de ordenação.
      */
     SortingData sort(int* arr, int size) override;
     /*
@@ -19,6 +24,14 @@ public:
     ~FivePercentInsertionQuickSort() override;
 private:
     long threshold; // Limite de tamanho para começar a utilizar inserção.
+    /*
+     * Método de quickSort híbrido com inserção 5%.
+     *
+     * @param arr - vetor a ser ordenado.
+     * @param start - início do vetor.
+     * @param end - final do vetor
+     * @param sd -  objeto que contabiliza dados sobre a execução do algoritmo de ordenação.
+     */
     void quickSort(int* arr, int start, int end, SortingData* sd) override;
 };
 

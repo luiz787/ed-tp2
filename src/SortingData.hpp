@@ -3,6 +3,9 @@
 
 #include <cstdint>
 
+/*
+ * Classe que encapsula e faz contagens de comparações e trocas dos algoritmos de ordenação.
+ */
 class SortingData {
 private:
     uint64_t comparisions;

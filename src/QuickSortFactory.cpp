@@ -7,9 +7,14 @@
 #include "TenPercentInsertionQuickSort.hpp"
 #include "NonRecursiveQuickSort.hpp"
 
-
+/*
+ * Função "Factory" de quickSorts. Retorna um objeto adequado, de acordo com o tipo especificado no parâmetro.
+ *
+ * @param type - tipo de quickSort, conforme especificação.
+ *
+ * @returns objeto QuickSort.
+ */
 QuickSort* QuickSortFactory::getQuickSort(std::string type) {
-    // Função "Factory" de quickSorts. Retorna um objeto adequado, de acordo com o tipo especificado no parâmetro.
     if (type == "QC") {
         return new ClassicQuickSort();
     }

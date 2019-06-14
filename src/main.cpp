@@ -8,36 +8,44 @@
 #include "ClassicQuickSort.hpp"
 #include <random>
 
-bool debug_checkSorted(int* vector, int size);
+bool checkSorted(int* vector, int size);
 void print(int* vector, int size);
 int* generateVector(int size, VectorType::Type type);
 
 int main(int argc, char* argv[]) {
     assert(argc > 3); // Asserção para garantir que o programa tenha no mínimo 3 argumentos.
-    QuickSort* quickSort = QuickSortFactory::getQuickSort(argv[1]);
-    auto vectorType = VectorType::getType(argv[2]);
-    unsigned int vectorSize = std::stol(argv[3]);
+    QuickSort* quickSort = QuickSortFactory::getQuickSort(argv[1]); // Determina o tipo de quickSort.
+    auto vectorType = VectorType::getType(argv[2]); // Determina o tipo de vetor.
+    unsigned int vectorSize = std::stol(argv[3]); // Determina o tamanho do vetor.
     bool shouldPrintVector = false;
-    if (argc == 5 && strncmp(argv[4], "-p", 2) == 0) {
+    if (argc == 5 && strncmp(argv[4], "-p", 2) == 0) { // Lógica para determinar se o vetor deve ser impresso.
         shouldPrintVector = true;
     }
     auto vector = generateVector(vectorSize, vectorType);
     if (shouldPrintVector) {
         print(vector, vectorSize);
     }
-    auto t1 = std::chrono::high_resolution_clock::now();
-    auto sortingData = quickSort->sort(vector, vectorSize);
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto elapsed_time = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-    //std::cout << "Sorted?" << debug_checkSorted(vector, vectorSize) << std::endl;
+    auto t1 = std::chrono::high_resolution_clock::now(); // Inicia o relógio.
+    auto sortingData = quickSort->sort(vector, vectorSize); // Ordena o vetor.
+    auto t2 = std::chrono::high_resolution_clock::now(); // Para o relógio.
+    auto elapsedTime = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1); // Calcula o tempo gasto.
+    //std::cout << "Sorted?" << checkSorted(vector, vectorSize) << std::endl;
     std::cout << argv[1] << " " << argv[2] << " " << argv[3] << " " << sortingData.getComparisons() << " " << sortingData.getSwaps() << std::endl;
-    std::cout << "Tempo de execucao: " << elapsed_time.count() << std::endl;
-    delete quickSort;
-    delete [] vector;
+    std::cout << "Tempo de execucao: " << elapsedTime.count() << std::endl;
+    delete quickSort; // Deleta o objeto de quickSort.
+    delete [] vector; // Deleta o vetor do heap.
     return 0;
 }
 
-bool debug_checkSorted(int* vector, int size) {
+/*
+ * Função para checar se o vetor está ordenado.
+ *
+ * @param vector - vetor.
+ * @param size - tamanho do vetor.
+ *
+ * @returns true se o vetor está ordenado.
+ */
+bool checkSorted(int* vector, int size) {
     for (int i = 0; i < size - 1; i++) {
         if (vector[i] > vector[i + 1]) {
             return false;
@@ -46,13 +54,26 @@ bool debug_checkSorted(int* vector, int size) {
     return true;
 }
 
+/*
+ * Função para imprimir o vetor em stdout.
+ *
+ * @param vector - vetor a ser impresso.
+ * @param size - tamanho do vetor a ser impresso.
+ */
 void print(int* vector, int size) {
     for (int i = 0; i < size; i++) {
         std::cout << vector[i] << " ";
     }
     std::cout << std::endl;
 }
-
+/*
+ * Gera um vetor com o tamanho size e o tipo type.
+ *
+ * @param size - tamanho do vetor a ser gerado.
+ * @param type - tipo do vetor a ser gerado: ordenado crescente, ordenado decrescente ou aleatório.
+ *
+ * @returns um vetor de inteiros.
+ */
 int* generateVector(int size, VectorType::Type type) {
     auto vector = new int[size]; // Instancia um vetor de inteiros no heap.
     if (type == VectorType::ORDERED_ASC) {
