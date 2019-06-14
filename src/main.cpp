@@ -13,7 +13,7 @@ void print(int* vector, int size);
 int* generateVector(int size, VectorType::Type type);
 
 int main(int argc, char* argv[]) {
-    assert(argc > 3);
+    assert(argc > 3); // Asserção para garantir que o programa tenha no mínimo 3 argumentos.
     QuickSort* quickSort = QuickSortFactory::getQuickSort(argv[1]);
     auto vectorType = VectorType::getType(argv[2]);
     unsigned int vectorSize = std::stol(argv[3]);
@@ -54,23 +54,31 @@ void print(int* vector, int size) {
 }
 
 int* generateVector(int size, VectorType::Type type) {
-    auto vector = new int[size];
+    auto vector = new int[size]; // Instancia um vetor de inteiros no heap.
     if (type == VectorType::ORDERED_ASC) {
+        // Caso seja requisitado um vetor crescente, é gerado um vetor no intervalo [0, size)
         for (int i = 0; i < size; i++) {
             vector[i] = i;
         }
     }
     if (type == VectorType::ORDERED_DESC) {
+        // Caso seja requisitado um vetor decrescente, é gerado um vetor no intervalo [0, size)
         for (int i = size - 1; i >= 0; i--) {
             vector[i] = i;
         }
     }
     if (type == VectorType::RANDOM) {
-        std::mt19937 rng(time(nullptr));
-        std::uniform_int_distribution<int> uni(0, size); // guaranteed unbiased
+        /*
+         * Para gerar o número aleatório, utiliza-se um "random device", que faz uso dos recursos
+         * do sistema operacional para gerar um número pseudo-aleatório.
+         */
+        std::random_device rd;
+        std::mt19937 rng(rd());
+        // Intervalo dos valores: 0 até o tamanho do vetor, especificado no parâmetro.
+        std::uniform_int_distribution<int> uni(0, size);
         for (int i = 0; i < size; i++) {
-            auto random_integer = uni(rng);
-            vector[i] = random_integer;
+            auto randomValue = uni(rng);
+            vector[i] = randomValue;
         }
     }
     return vector;

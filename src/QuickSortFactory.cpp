@@ -9,6 +9,7 @@
 
 
 QuickSort* QuickSortFactory::getQuickSort(std::string type) {
+    // Função "Factory" de quickSorts. Retorna um objeto adequado, de acordo com o tipo especificado no parâmetro.
     if (type == "QC") {
         return new ClassicQuickSort();
     }
